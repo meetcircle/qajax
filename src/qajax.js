@@ -163,6 +163,12 @@
       if (this.withCredentials)
         xhr.withCredentials = true;
 
+      xhr.onerror = function (e) {
+        setTimeout(function () {
+          xhrResult.promise.fail(e);
+        }, 100);
+      };
+
       // Send the XHR
       var data = this.data;
       if (data !== undefined && data !== null)
